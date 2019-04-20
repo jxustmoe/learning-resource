@@ -12,5 +12,12 @@ public interface CategoryDAO {
 
     public void alterCatogory(Category category);
 
+    /**
+     * 根据名字返回category，没有返回null
+     */
+    public Category getCategoryByName(String name);
+
     public List<Category> getAllCategory();
+
+
 }
