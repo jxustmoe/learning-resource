@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.jxust.repository.CategoryDAO">
+    <insert id="addCategory" parameterType="Category">
+        INSERT INTO category (name, pid) VALUES (#{name}, #{pid})
+    </insert>
+    <delete id="deleteCategory" parameterType="int">
+        DELETE FROM category WHERE id = #{categoryId}
+    </delete>
+    <update id="alterCatogory" parameterType="Category">
+        UPDATE category
+        <set>
+            <if test="name != null"> name = #{name}</if>
+            <if test="pid != null"> pid = #{pid}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+    <select id="getCategoryByName" resultType="Category">
+        SELECT id, name, pid FROM category WHERE name = #{name}
+    </select>
+    <select id="getAllCategory" resultType="Category">
+        SELECT * FROM category
+    </select>
+</mapper>
+
