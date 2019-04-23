@@ -1,10 +1,12 @@
 package cn.jxust.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Resource {
     private int id;
     private String name;

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <RollingFile name="toFile" fileName="${sys:user.dir}/logs/info.log"
+                     filePattern="${sys:user.dir}/logs/$${date:yyyy-MM}/%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
+            <Policies>
+                <!--24小时之后，新建log-->
+                <TimeBasedTriggeringPolicy interval="24"/>
+                <!--|| 关系-->
+                <!--log超过50mb后新建-->
+                <SizeBasedTriggeringPolicy size="50MB"/>
+            </Policies>
+            <!--30个配置文件后开始删除旧的-->
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="toFile"/>
+        </Root>
+    </Loggers>
+</Configuration>

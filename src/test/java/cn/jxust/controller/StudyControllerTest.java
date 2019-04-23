@@ -1,4 +1,4 @@
-package jxust.controller;
+package cn.jxust.controller;
 
 
 

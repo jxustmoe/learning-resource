@@ -1,6 +1,7 @@
 package cn.jxust.repository;
 
 import cn.jxust.model.Category;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

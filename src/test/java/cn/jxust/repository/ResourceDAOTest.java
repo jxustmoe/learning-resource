@@ -1,4 +1,4 @@
-package jxust.repository;
+package cn.jxust.repository;
 
 public class ResourceDAOTest {
 }

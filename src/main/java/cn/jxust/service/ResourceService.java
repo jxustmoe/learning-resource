@@ -4,7 +4,9 @@ import cn.jxust.exception.CategoryNotExistException;
 import cn.jxust.exception.ResourceNotExistException;
 import cn.jxust.model.Page;
 import cn.jxust.model.Resource;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface ResourceService {
 
     /**

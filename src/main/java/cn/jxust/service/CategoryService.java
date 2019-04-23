@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public interface CategoryService {
     /**
      * 添加目录，现根据name，验证目录是否存在，如果存在应该抛出异常。
@@ -36,8 +37,9 @@ public interface CategoryService {
 
     /**
      * 把DAO返回的List组成Map
-     * 第一个泛型类型为父目录，一个父目录包含一个List子目录
+     * 子List的一个元素放父目录，后面都放子目录
+     * 相当于，一个二维数组，每一行第一个元素放父目录，后面放子目录
      * @return 父子目录
      */
-    public Map<Category, List<Category>> getCategories();
+    public List<List<Category>> getCategories();
 }

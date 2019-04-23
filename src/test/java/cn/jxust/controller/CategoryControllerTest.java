@@ -1,4 +1,5 @@
-package jxust.controller;
+package cn.jxust.controller;
 
 public class CategoryControllerTest {
+    
 }

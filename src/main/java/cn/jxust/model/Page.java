@@ -3,11 +3,13 @@ package cn.jxust.model;
 import com.github.pagehelper.PageInfo;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
 @Getter
 @Setter
+@ToString
 //由于PageInfo过于复杂，我们用不了那么多的功能，所以这里对它进行封装。
 public class Page<T> {
     //当前页

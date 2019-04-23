@@ -2,6 +2,7 @@ package cn.jxust.repository;
 
 import cn.jxust.model.Resource;
 import com.github.pagehelper.PageInfo;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

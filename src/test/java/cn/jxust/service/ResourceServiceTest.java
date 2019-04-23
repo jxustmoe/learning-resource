@@ -1,4 +1,4 @@
-package jxust.service;
+package cn.jxust.service;
 
 public class ResourceServiceTest {
 }
