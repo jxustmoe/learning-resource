@@ -34,7 +34,7 @@ public class StudyControllerTest extends BaseTest {
                                                         .param("link","pornhub.com")
                                                         .param("uploadTime","1998")
                                                         .param("categoryId","1"))
-                .andDo(print())
+//                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.statusCode",is(500)))
                 .andReturn();
@@ -45,7 +45,7 @@ public class StudyControllerTest extends BaseTest {
     public void delete() throws Exception{
         MvcResult mvcResult = this.mockMvc.perform(get("/studyRes/delete")
                 .param("resourceId","1"))
-                .andDo(print())
+//                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.statusCode",is(200)))
                 .andReturn();
@@ -60,7 +60,7 @@ public class StudyControllerTest extends BaseTest {
                 .param("link","pornhub.com")
                 .param("uploadTime","1998")
                 .param("categoryId","1"))
-                .andDo(print())
+//                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.statusCode",is(500)))
                 .andReturn();
@@ -70,7 +70,7 @@ public class StudyControllerTest extends BaseTest {
     @Test
     public void show1() throws Exception{
         MvcResult mvcResult = this.mockMvc.perform(get("/studyRes/show"))
-                .andDo(print())
+//                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data.data.length()",is(5)))
                 .andReturn();
@@ -82,7 +82,7 @@ public class StudyControllerTest extends BaseTest {
     public void show2() throws Exception{
         MvcResult mvcResult = this.mockMvc.perform(get("/studyRes/show")
                                                     .param("categoryId","1"))
-                .andDo(print())
+//                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data.data.length()",is(3)))
                 .andReturn();
@@ -93,7 +93,7 @@ public class StudyControllerTest extends BaseTest {
     public void show3() throws Exception{
         MvcResult mvcResult = this.mockMvc.perform(get("/studyRes/show")
                                                     .param("keyword","keyword"))
-                .andDo(print())
+//                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data.data.length()",is(4)))
                 .andReturn();

@@ -34,7 +34,7 @@ public class CategoryControllerTest extends BaseTest {
                                                     .param("id","1")
                                                     .param("name","1")
                                                     .param("pid","1"))
-                .andDo(print())
+//                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.statusCode",is(500)))
                 .andReturn();
@@ -66,7 +66,7 @@ public class CategoryControllerTest extends BaseTest {
     @Test
     public void showCategory() throws Exception{
         MvcResult mvcResult = this.mockMvc.perform(get("/category/show"))
-                .andDo(print())
+//                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data[0].length()", is(5)))
                 .andReturn();
