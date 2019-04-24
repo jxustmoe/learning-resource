@@ -9,6 +9,7 @@ import cn.jxust.model.Resource;
 import cn.jxust.service.ResourceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,40 +22,38 @@ public class StudyController {
     private ResourceService service;
 
     @RequestMapping("/add")
-    public Message add(Resource resource){
+    public Message add(Resource resource) throws CategoryNotExistException {
         log.info("param is: "+resource.toString());
+
+        service.addResource(resource);
+
         Message message=new Message();
-        try {
-            service.addResource(resource);
-        } catch (CategoryNotExistException e) {
-            message.setStatusCode(500);
-            message.setStatusMessage("目录已存在");
-            log.error(message.getStatusMessage(),e);
-        }
+        message.setStatusCode(200);
+        message.setStatusMessage("添加成功");
         return message;
     }
 
     @RequestMapping("/delete")
     public Message<Resource> delete(@RequestParam int resourceId){
-        Message<Resource> message=new Message<>();
+        log.info("param is: "+resourceId);
+
         service.deleteResource(resourceId);
+
+        Message<Resource> message=new Message<>();
         message.setStatusCode(200);
         message.setStatusMessage("删除成功");
-        log.info("delete resource id:{}",resourceId);
         return message;
     }
 
     @RequestMapping("/update")
-    public Message update(Resource resource){
+    public Message update(Resource resource) throws ResourceNotExistException {
         log.info("param is :"+resource);
+
+        service.alterResource(resource);
+
         Message message=new Message();
-        try {
-            service.alterResource(resource);
-        } catch (ResourceNotExistException e) {
-            message.setStatusCode(500);
-            message.setStatusMessage("资源不存在");
-            log.error(message.getStatusMessage(),e);
-        }
+        message.setStatusCode(200);
+        message.setStatusMessage("修改成功");
         return message;
     }
 
@@ -87,5 +86,6 @@ public class StudyController {
     public void setService(ResourceService service) {
         this.service = service;
     }
+
 }
 

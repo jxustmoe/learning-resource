@@ -34,7 +34,7 @@ public class CategoryControllerTest extends BaseTest {
                                                     .param("id","1")
                                                     .param("name","1")
                                                     .param("pid","1"))
-//                .andDo(print())
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.statusCode",is(500)))
                 .andReturn();

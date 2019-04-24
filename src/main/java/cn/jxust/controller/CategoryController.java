@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,46 +27,44 @@ public class CategoryController {
     private CategoryService service;
 
     @RequestMapping("/add")
-    public Message<Category> add(Category category){
+    public Message<Category> add(Category category) throws CategoryExistException {
         log.info("param is: "+category.toString());
+
+        service.addCategory(category);
+
         Message<Category> message=new Message<>();
-        try {
-            service.addCategory(category);
-        } catch (CategoryExistException e) {
-            message.setStatusCode(500);
-            message.setStatusMessage("目录已存在");
-            log.error(message.getStatusMessage(),e);
-        }
+        message.setStatusMessage("添加成功");
         return message;
     }
 
     @RequestMapping("/delete")
     public Message<Category> delete(@RequestParam int categoryId){
-        Message<Category> message=new Message<>();
+        log.info("delete category id:{}",categoryId);
+
         service.deleteCategory(categoryId);
-        message.setStatusCode(200);
+
+        Message<Category> message=new Message<>();
         message.setStatusMessage("删除成功");
-        log.error("delete category id:{}",categoryId);
         return message;
     }
 
     @RequestMapping("/update")
-    public Message update(Category category){
+    public Message update(Category category) throws CategoryNotExistException {
+        log.info("param is:",category);
+
+        service.alterCategory(category);
+
         Message message=new Message();
-        try {
-            service.alterCategory(category);
-        } catch (CategoryNotExistException e) {
-            message.setStatusCode(500);
-            message.setStatusMessage("目录不存在");
-            log.error(message.getStatusMessage(),e);
-        }
+        message.setStatusMessage("修改成功");
         return message;
     }
 
     @RequestMapping("/show")
     public Message<List<List<Category>>> show(){
+        List<List<Category>> categories = service.getCategories();
+
         Message<List<List<Category>>> message=new Message<>();
-        message.setData(service.getCategories());
+        message.setData(categories);
         return message;
     }
 
@@ -77,4 +76,5 @@ public class CategoryController {
     public void setService(CategoryService service) {
         this.service = service;
     }
+
 }
