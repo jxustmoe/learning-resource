@@ -7,9 +7,6 @@
     <insert id="addResource" parameterType="Resource">
         INSERT INTO resource (name, categoryId, link, uploadTime) VALUES (#{name}, #{categoryId}, #{link}, #{uploadTime})
     </insert>
-    <delete id="deleteResource" parameterType="Resource">
-        DELETE FROM resource WHERE id = #{id}
-    </delete>
     <update id="alterResource" parameterType="Resource">
         UPDATE resource
         <set>
@@ -20,15 +17,21 @@
         </set>
         WHERE id = #{id}
     </update>
-    <select id="SpecificQuery" resultType="Resource">
-        SELECT id, name, categoryId, link, uploadTime FROM resource WHERE categoryId = #{categoryId}
+    <select id="specificQuery" resultType="Resource">
+        SELECT id, name, categoryid, link, uploadTime FROM resource WHERE categoryid = #{categoryId}
     </select>
-    <select id="BlueQuery" resultType="Resource">
+    <select id="blurQuery" resultType="Resource">
         <bind name="keyWordLike" value=" '%' + keyWord + '%' "/>
-        SELECT id, name, categoryId, link, uploadTime FROM resource WHERE name LIKE #{keyWord}
+        SELECT * FROM resource WHERE name LIKE #{keyWordLike}
     </select>
     <select id="getAllResources" resultType="Resource">
         SELECT * FROM resource
     </select>
+    <select id="getResourceById" resultType="Resource">
+        SELECT * FROM resource WHERE id=#{resourceId}
+    </select>
+    <delete id="deleteResourceById">
+        DELETE FROM resource WHERE id = #{resourceId}
+    </delete>
 </mapper>
 

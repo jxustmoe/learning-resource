@@ -28,7 +28,7 @@ public interface ResourceService {
      */
     public void alterResource(Resource resource) throws ResourceNotExistException;
 
-    /**
+     /**
      * 明确查询
      * 有两种情况，目录或不存在者是父目录，返回空list，该目录下没有资源，返回空list
      *是子目录，且有数据,返回有数据的list
@@ -36,19 +36,20 @@ public interface ResourceService {
      * @param pageNum Page
      * @return
      */
-    public Page<Resource> getPagedResoures(int categoryId,int pageNum);
+    public Page<Resource> getPagedResources(int categoryId, int pageNum);
 
     /**
      *模糊查询，重载方法，交给数据库，让数据库使用like搞
      * 直接返回就行了。
      * @param keyWord 关键字
+     * @param page
      * @return Page
      */
-    public Page<Resource> getPageResoruces(String keyWord);
+    public Page<Resource> getPageResources(String keyWord, int page);
 
     /**
      * 返回任何类型的资料
      * @return
      */
-    public Page<Resource> getAllResoruces(int pageNum);
+    public Page<Resource> getAllResources(int pageNum);
 }

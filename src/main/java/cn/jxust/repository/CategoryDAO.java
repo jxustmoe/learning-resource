@@ -11,7 +11,7 @@ public interface CategoryDAO {
 
     public void deleteCategory(int categoryId);
 
-    public void alterCatogory(Category category);
+    public void alterCategory(Category category);
 
     /**
      * 根据名字返回category，没有返回null
@@ -20,5 +20,6 @@ public interface CategoryDAO {
 
     public List<Category> getAllCategory();
 
+    Category getCategoryById(int categoryId);
 
 }

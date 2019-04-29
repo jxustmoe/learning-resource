@@ -34,7 +34,7 @@ public class StubResourceService implements ResourceService {
 
     @Override
     //返回3资源
-    public Page<Resource> getPagedResoures(int categoryId, int pageNum) {
+    public Page<Resource> getPagedResources(int categoryId, int pageNum) {
         List<Resource> list = setData();
         page=new Page<>(new PageInfo<>(list));
         page.getData().remove(4);
@@ -44,16 +44,16 @@ public class StubResourceService implements ResourceService {
 
     @Override
     //返回4个资源
-    public Page<Resource> getPageResoruces(String keyWord) {
+    public Page<Resource> getPageResources(String keyWord, int page) {
         List<Resource> list = setData();
-        page=new Page<>(new PageInfo<>(list));
-        page.getData().remove(4);
-        return page;
+        this.page =new Page<>(new PageInfo<>(list));
+        this.page.getData().remove(4);
+        return this.page;
     }
 
     @Override
     //返回5个资源
-    public Page<Resource> getAllResoruces(int pageNum) {
+    public Page<Resource> getAllResources(int pageNum) {
         return new Page<>(new PageInfo<>(setData()));
     }
 

@@ -4,13 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <settings>
-        <setting name="logImpl" value="LOG4J2"/>
+        <setting name="logImpl" value="SLF4J"/>
     </settings>
 
     <plugins>
         <plugin interceptor="com.github.pagehelper.PageInterceptor">
             <!--支持从方法参数传入页码-->
             <property name="supportMethodsArguments" value="true"/>
+            <property name="params" value="pageNum=pageNumKey;pageSize=pageSizeKey;"/>
             <!--页码合理化-->
             <property name="reasonable" value="true"/>
         </plugin>

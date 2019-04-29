@@ -65,6 +65,7 @@ public class CategoryController {
 
         Message<List<List<Category>>> message=new Message<>();
         message.setData(categories);
+        message.setStatusMessage("ok");
         return message;
     }
 

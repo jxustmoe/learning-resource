@@ -23,5 +23,9 @@
             <AppenderRef ref="Console"/>
             <AppenderRef ref="toFile"/>
         </Root>
+        <Logger name="cn.jxust.repository" level="debug" additivity="false">
+            <appender-ref ref="Console"/>
+            <AppenderRef ref="toFile"/>
+        </Logger>
     </Loggers>
 </Configuration>

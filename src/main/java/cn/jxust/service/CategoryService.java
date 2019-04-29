@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface CategoryService {
     /**
      * 添加一个目录，添加前通过调用dao层方法判断该目录是否已经存在，存在则抛出异常

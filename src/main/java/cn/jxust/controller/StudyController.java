@@ -9,7 +9,6 @@ import cn.jxust.model.Resource;
 import cn.jxust.service.ResourceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -65,13 +64,13 @@ public class StudyController {
         Page<Resource> resourcePage;
         if(keyword==null&&categoryId==null){
             log.info("get all resources");
-            resourcePage = service.getAllResoruces(page);
+            resourcePage = service.getAllResources(page);
         }else if(keyword==null){
             log.info("get paged resources");
-            resourcePage = service.getPagedResoures(Integer.parseInt(categoryId),page);
+            resourcePage = service.getPagedResources(Integer.parseInt(categoryId),page);
         }else {
             log.info("get key word resource");
-            resourcePage = service.getPageResoruces(keyword);
+            resourcePage = service.getPageResources(keyword,page);
         }
         Message<Page<Resource>> message=new Message<>();
         message.setData(resourcePage);
