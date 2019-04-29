@@ -278,3 +278,52 @@ JSON结果
 //太多了
 ```
 
+
+
+异常情况
+
+```json
+{    
+    "statusCode": 666,    
+    "statusMessage": "服务器打盹了",    
+    "data": null
+}
+```
+
+出现这个666错误码请马上通知我。
+
+受管辖的异常情况
+
+```json
+{    
+    "statusCode": 500,    
+    "statusMessage": "修改的目录不存在了",    
+    "data": null
+}
+//如果添加的时候目录已存在，为了防止添加重复的目录就会有这个
+{    
+    "statusCode": 500,    
+    "statusMessage": "目录已存在",    
+    "data": null
+}
+//如果修改目录的时候，目录不存在(就在你想要修改的时候被别人删了)，就会有这个
+{    
+    "statusCode": 500,    
+    "statusMessage": "目录不存在",    
+    "data": null
+}
+//修改资源同理，因为网上重复的资源太多，所以没有资源已存在这个异常
+{    
+    "statusCode": 500,    
+    "statusMessage": "资源不存在",    
+    "data": null
+}
+//参数有问题
+{    
+    "statusCode": 500,    
+    "statusMessage": "参数为空或者非法",    
+    "data": null
+}
+```
+
+500是意料之中的异常，一般是参数输入错了，或者，目录不存在什么的。都是这个错误码。
