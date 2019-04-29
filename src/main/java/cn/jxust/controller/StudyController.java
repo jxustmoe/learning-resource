@@ -3,10 +3,12 @@ package cn.jxust.controller;
 
 import cn.jxust.controller.model.Message;
 import cn.jxust.exception.CategoryNotExistException;
+import cn.jxust.exception.ParameterInvalidException;
 import cn.jxust.exception.ResourceNotExistException;
 import cn.jxust.model.Page;
 import cn.jxust.model.Resource;
 import cn.jxust.service.ResourceService;
+import cn.jxust.support.ParameterCheckUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +23,14 @@ public class StudyController {
     private ResourceService service;
 
     @RequestMapping("/add")
-    public Message add(Resource resource) throws CategoryNotExistException {
+    public Message add(Resource resource) throws CategoryNotExistException, ParameterInvalidException {
+        //日志
         log.info("param is: "+resource.toString());
-
+        //参数验证
+        ParameterCheckUtils.isValidResourceContent(resource);
+        //业务
         service.addResource(resource);
-
+        //正确结果
         Message message=new Message();
         message.setStatusCode(200);
         message.setStatusMessage("添加成功");
@@ -33,11 +38,14 @@ public class StudyController {
     }
 
     @RequestMapping("/delete")
-    public Message<Resource> delete(@RequestParam int resourceId){
+    public Message<Resource> delete(int resourceId) throws ParameterInvalidException {
+        //日志
         log.info("param is: "+resourceId);
-
+        //验证
+        ParameterCheckUtils.isValidResourceId(resourceId);
+        //业务
         service.deleteResource(resourceId);
-
+        //正确结果
         Message<Resource> message=new Message<>();
         message.setStatusCode(200);
         message.setStatusMessage("删除成功");
@@ -45,11 +53,15 @@ public class StudyController {
     }
 
     @RequestMapping("/update")
-    public Message update(Resource resource) throws ResourceNotExistException {
+    public Message update(Resource resource) throws ResourceNotExistException, ParameterInvalidException {
+        //日志
         log.info("param is :"+resource);
-
+        //验证
+        ParameterCheckUtils.isValidResourceId(resource);
+        ParameterCheckUtils.isValidResourceContent(resource);
+        //业务逻辑
         service.alterResource(resource);
-
+        //正确结果
         Message message=new Message();
         message.setStatusCode(200);
         message.setStatusMessage("修改成功");
