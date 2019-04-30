@@ -4,6 +4,7 @@ import cn.jxust.exception.CategoryExistException;
 import cn.jxust.exception.CategoryNotExistException;
 import cn.jxust.model.Category;
 import cn.jxust.repository.CategoryDAO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@Slf4j
 public class CategoryServiceImpl implements CategoryService {
 
     private CategoryDAO categoryDAO;
@@ -40,6 +42,8 @@ public class CategoryServiceImpl implements CategoryService {
     public List<List<Category>> getCategories() {
         Map<Integer,List<Category>> map=new HashMap<>();
         List<Category> allCategory = categoryDAO.getAllCategory();
+        //日志
+        log.info(allCategory.toString());
         for(Category category:allCategory){
             List<Category> list;
             if(category.getPid()==0){
@@ -48,13 +52,10 @@ public class CategoryServiceImpl implements CategoryService {
                 list.add(0,category);
                 map.put(category.getId(),list);
             }else {
-                list = map.get(category.getId());
-                if(list==null){
-                    list=new ArrayList<>();
-                    list.add(new Category());
-                }
+                list = map.get(category.getPid());
+                if(list==null) list=new ArrayList<>();
                 list.add(category);
-                map.put(category.getId(),list);
+                map.put(category.getPid(),list);
             }
         }
         return new ArrayList<>(map.values());

@@ -12,3 +12,7 @@ CREATE TABLE IF NOT EXISTS `resource` (
   `uploadtime` CHAR(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ;
+
+
+DROP TABLE category;
+DROP TABLE resource;
