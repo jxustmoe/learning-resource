@@ -11,7 +11,7 @@
 
 ### 示例
 
-1. http://localhost:8080/category/add?name=计算机网络4&pid=1 
+1. http://meng.jxustsrw.cn/learningResource/category/add?name=计算机网络4&pid=1 
 
 ### JSON结果
 
@@ -33,7 +33,7 @@
 
 ### 示例
 
-1. http://localhost:8080/category/delete?categoryId=17
+1. http://meng.jxustsrw.cn/learningResource/category/delete?categoryId=17
 
 ### JSON结果
 
@@ -57,7 +57,7 @@
 
 ### 示例
 
-1.  http://localhost:8080/category/update?id=1&name=修改的子目录4&pid=25
+1.  http://meng.jxustsrw.cn/learningResource/category/update?id=1&name=修改的子目录4&pid=25
 
 ### JSON结果
 
@@ -79,7 +79,7 @@
 
 ### 示例
 
-1. http://localhost:8080/category/show
+1. http://meng.jxustsrw.cn/learningResource/category/show
 
 ### JSON结果
 
@@ -119,7 +119,7 @@
 
 ### 示例
 
-1. http://localhost:8080/studyRes/add?name=新添加的资源1&categoryId=15&link=baidu.com&uploadTime=1998
+1. http://meng.jxustsrw.cn/learningResource/studyRes/add?name=新添加的资源1&categoryId=15&link=baidu.com&uploadTime=1998
 
 ### JSON结果
 
@@ -145,7 +145,7 @@
 
 ### 示例
 
-1. http://localhost:8080/studyRes/update?name=Java最新基础教程盗版&categoryId=15&link=baidu.com&uploadTime=1998&id=13
+1. http://meng.jxustsrw.cn/learningResource/studyRes/update?name=Java最新基础教程盗版&categoryId=15&link=baidu.com&uploadTime=1998&id=13
 
 ### JSON结果
 
@@ -167,7 +167,7 @@
 
 ### 示例
 
-1. http://localhost:8080/studyRes/delete?resourceId=14
+1. http://meng.jxustsrw.cn/learningResource/studyRes/delete?resourceId=14
 
 ### JSON结果
 
@@ -193,7 +193,7 @@
 
    模糊查询
 
-1. http://localhost:8080/studyRes/delete?resourceId=14
+1. http://meng.jxustsrw.cn/learningResource/studyRes/delete?resourceId=14
 
 ### JSON结果
 
@@ -223,7 +223,7 @@
 
 根据目录查询
 
-1. http://localhost:8080/studyRes/show?categoryId=15
+1. http://meng.jxustsrw.cn/learningResource/studyRes/show?categoryId=15
 
 JSON结果
 
@@ -251,7 +251,7 @@ JSON结果
 
 获取所有
 
-1. http://localhost:8080/studyRes/show
+1. http://meng.jxustsrw.cn/learningResource/studyRes/show
 
 JSON结果
 
@@ -290,14 +290,15 @@ JSON结果
 }
 ```
 
-出现这个666错误码请马上通知我。
+一般这个666不会出现，如果出现这个666错误码请马上通知我。
 
 受管辖的异常情况
 
 ```json
+//修改的目录被某个人删了
 {    
     "statusCode": 500,    
-    "statusMessage": "修改的目录不存在了",    
+    "statusMessage": "目录不存在",    
     "data": null
 }
 //如果添加的时候目录已存在，为了防止添加重复的目录就会有这个
@@ -327,3 +328,9 @@ JSON结果
 ```
 
 500是意料之中的异常，一般是参数输入错了，或者，目录不存在什么的。都是这个错误码。
+
+# 最后
+有任何需求，建议，BUG，设计上的建议。请通知，或者在这个GitHub上提出！
+
+推荐使用Typora打开。
+

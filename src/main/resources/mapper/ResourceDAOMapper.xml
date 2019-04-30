@@ -5,10 +5,10 @@
 
 <mapper namespace="cn.jxust.repository.ResourceDAO">
     <insert id="addResource" parameterType="Resource">
-        INSERT INTO resource (name, categoryId, link, uploadTime) VALUES (#{name}, #{categoryId}, #{link}, #{uploadTime})
+        INSERT INTO learn_res_resource (name, categoryId, link, uploadTime) VALUES (#{name}, #{categoryId}, #{link}, #{uploadTime})
     </insert>
     <update id="alterResource" parameterType="Resource">
-        UPDATE resource
+        UPDATE learn_res_resource
         <set>
             <if test="name != null"> name = #{name} ,</if>
             <if test="categoryId != null"> categoryId = #{categoryId},</if>
@@ -18,20 +18,20 @@
         WHERE id = #{id}
     </update>
     <select id="specificQuery" resultType="Resource">
-        SELECT id, name, categoryid, link, uploadTime FROM resource WHERE categoryid = #{categoryId}
+        SELECT id, name, categoryid, link, uploadTime FROM learn_res_resource WHERE categoryid = #{categoryId}
     </select>
     <select id="blurQuery" resultType="Resource">
         <bind name="keyWordLike" value=" '%' + keyWord + '%' "/>
-        SELECT * FROM resource WHERE name LIKE #{keyWordLike}
+        SELECT * FROM learn_res_resource WHERE name LIKE #{keyWordLike}
     </select>
     <select id="getAllResources" resultType="Resource">
-        SELECT * FROM resource
+        SELECT * FROM learn_res_resource
     </select>
     <select id="getResourceById" resultType="Resource">
-        SELECT * FROM resource WHERE id=#{resourceId}
+        SELECT * FROM learn_res_resource WHERE id=#{resourceId}
     </select>
     <delete id="deleteResourceById">
-        DELETE FROM resource WHERE id = #{resourceId}
+        DELETE FROM learn_res_resource WHERE id = #{resourceId}
     </delete>
 </mapper>
 

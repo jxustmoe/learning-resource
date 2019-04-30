@@ -5,13 +5,13 @@
 
 <mapper namespace="cn.jxust.repository.CategoryDAO">
     <insert id="addCategory" parameterType="Category">
-        INSERT INTO category (name, pid) VALUES (#{name}, #{pid})
+        INSERT INTO learn_res_category (name, pid) VALUES (#{name}, #{pid})
     </insert>
     <delete id="deleteCategory" parameterType="int">
-        DELETE FROM category WHERE id = #{categoryId}
+        DELETE FROM learn_res_category WHERE id = #{categoryId}
     </delete>
     <update id="alterCategory" parameterType="Category">
-        UPDATE category
+        UPDATE learn_res_category
         <set>
             <if test="name != null"> name = #{name}</if>
           ,
@@ -20,13 +20,13 @@
         WHERE id = #{id}
     </update>
     <select id="getCategoryByName" resultType="Category">
-        SELECT id, name, pid FROM category WHERE name = #{name}
+        SELECT id, name, pid FROM learn_res_category WHERE name = #{name}
     </select>
     <select id="getAllCategory" resultType="Category">
-        SELECT * FROM category
+        SELECT * FROM learn_res_category
     </select>
     <select id="getCategoryById" resultType="Category">
-        SELECT * FROM category WHERE id=#{categoryId}
+        SELECT * FROM learn_res_category WHERE id=#{categoryId}
     </select>
 </mapper>
 
